@@ -13,3 +13,5 @@ export class ConfirmationDeleteContactComponent implements OnInit {
   }
 
 }
+
+
