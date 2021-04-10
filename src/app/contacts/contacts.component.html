@@ -1,16 +1,11 @@
-<!-- This button triggers the overlay and is it's origin  -->
-<button  cdkOverlayOrigin #trigger="cdkOverlayOrigin" hidden></button>
-
-<!-- This template displays the overlay content and is connected to the button -->
+<!-- This template displays the overlay content and is connected to the button at the bottom -->
 <ng-template  cdkConnectedOverlay
               [cdkConnectedOverlayOrigin]="trigger"
               [cdkConnectedOverlayOpen]="isOpen">
-  <mat-toolbar color='primary' id="deletetoolbar">
-    <button mat-icon-button (click)="hideDeleteBar()"><mat-icon>arrow_back</mat-icon>BACK</button>
+  <mat-toolbar color='primary' id="delete-toolbar">
+    <div class="box-1"><button mat-icon-button (click)="hideDeleteBar()" class="box-1"><mat-icon>arrow_back</mat-icon>BACK</button></div>
+    <button mat-icon-button [mat-menu-trigger-for]="toggleAllMenu">{{ selection.selected.length }} selected<mat-icon matSuffix>arrow_drop_down</mat-icon></button>  
     
-    <p> {{ selection.selected.length }} selected </p> 
-
-    <button mat-icon-button [mat-menu-trigger-for]="toggleAllMenu"><mat-icon>arrow_drop_down</mat-icon></button>  
     <mat-menu #toggleAllMenu="matMenu">
       <button mat-menu-item (click)="selectAll()">Select all</button>
       <button mat-menu-item (click)="deselectAll()">Deselect all</button>
@@ -22,24 +17,18 @@
 
 
 
-<mat-toolbar color='primary' id="searchtoolbar">
-  <mat-icon>account_box</mat-icon> <p>Contacts</p> 
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search for a contact" #input>
-    </mat-form-field>
+<mat-toolbar color='primary' id="search-toolbar">
+  <div class="box-1"><mat-icon>account_box</mat-icon></div> 
+  <p class="search box-1">Contacts</p> 
+  <mat-form-field class="box-2">  
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput  (keyup)="applyFilter($event)" placeholder="Search for a contact" class="search">
+  </mat-form-field>
 </mat-toolbar>
 
 
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <!-- Checkbox Column 
-  <ng-container matColumnDef="checkbox">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element"><mat-checkbox> </mat-checkbox> </td>
-  </ng-container>
-  -->
-
 
   <ng-container matColumnDef="checkbox">
     <th mat-header-cell *matHeaderCellDef></th>
@@ -55,25 +44,25 @@
   <!-- Picture Column -->
   <ng-container matColumnDef="picture">
     <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element"> <button mat-button (click)="editContactDialog(element)">  <img src="{{ element.picture }}"> </button> </td>
+    <td mat-cell *matCellDef="let element">   <img  (click)="editContactDialog(element)"src="{{ element.picture }}">  </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element"> <button mat-button >{{element.name}} {{ element.lastname }} </button> </td>
+    <td mat-cell *matCellDef="let element"> <div (click)="editContactDialog(element)" >{{element.name}} {{ element.lastname }} </div> </td>
   </ng-container>
 
   <!-- Email Column -->
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>Email</th>
-    <td mat-cell *matCellDef="let element"> <button mat-button> {{element.email}} </button> </td>
+    <td mat-cell *matCellDef="let element"> <div (click)="editContactDialog(element)"> {{element.email}} </div> </td>
   </ng-container>
 
   <!-- Telephone Column -->
   <ng-container matColumnDef="phoneNumber">
     <th mat-header-cell *matHeaderCellDef>Phone</th>
-    <td mat-cell *matCellDef="let element"> <button mat-button> {{element.phonenumber}} </button></td>
+    <td mat-cell *matCellDef="let element"> <div (click)="editContactDialog(element)"> {{element.phonenumber}} </div></td>
   </ng-container>
 
   <!-- Favorite Column -->
@@ -113,3 +102,6 @@
 <button mat-fab color="primary" (click)="openDialog()" id="createcontact">
   <mat-icon >person_add</mat-icon>
 </button>
+
+<!-- This button used to triggers the overlay and is it's origin  -->
+<button  cdkOverlayOrigin #trigger="cdkOverlayOrigin" hidden> </button>
