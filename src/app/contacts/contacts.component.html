@@ -3,8 +3,8 @@
               [cdkConnectedOverlayOrigin]="trigger"
               [cdkConnectedOverlayOpen]="isOpen">
   <mat-toolbar color='primary' id="delete-toolbar">
-    <div class="box-1"><button mat-icon-button (click)="hideDeleteBar()" class="box-1"><mat-icon>arrow_back</mat-icon>BACK</button></div>
-    <button mat-icon-button [mat-menu-trigger-for]="toggleAllMenu">{{ selection.selected.length }} selected<mat-icon matSuffix>arrow_drop_down</mat-icon></button>  
+    <div class="box-2"><button mat-icon-button (click)="hideDeleteBar()"><mat-icon>arrow_back</mat-icon>BACK</button></div>
+    <div class="box-2"><button mat-button [mat-menu-trigger-for]="toggleAllMenu">{{ selection.selected.length }} selected<mat-icon matSuffix>arrow_drop_down</mat-icon></button>  </div>
     
     <mat-menu #toggleAllMenu="matMenu">
       <button mat-menu-item (click)="selectAll()">Select all</button>
@@ -18,15 +18,14 @@
 
 
 <mat-toolbar color='primary' id="search-toolbar">
-  <div class="box-1"><mat-icon>account_box</mat-icon></div> 
+  <div class="box-1" ><mat-icon>account_box</mat-icon></div> 
   <p class="search box-1">Contacts</p> 
   <mat-form-field class="box-2">  
     <mat-icon matPrefix>search</mat-icon>
     <input matInput  (keyup)="applyFilter($event)" placeholder="Search for a contact" class="search">
   </mat-form-field>
+  
 </mat-toolbar>
-
-
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -104,4 +103,5 @@
 </button>
 
 <!-- This button used to triggers the overlay and is it's origin  -->
-<button  cdkOverlayOrigin #trigger="cdkOverlayOrigin" hidden> </button>
+<button  cdkOverlayOrigin #trigger="cdkOverlayOrigin" hidden="true"> </button>
+

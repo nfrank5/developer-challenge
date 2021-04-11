@@ -1,11 +1,12 @@
-<mat-toolbar color='primary'>
-    <p>New Contact</p>
-    <button mat-dialog-close mat-mini-fab color="primary" id="close"><mat-icon>close</mat-icon></button>
-  </mat-toolbar>
-  
-  
-  
-  <form [formGroup]="newContactForm" (ngSubmit)="onSubmit()">
+
+  <mat-toolbar mat-dialog-title color="primary">
+    New Contact
+    <button mat-dialog-close flex mat-mini-fab color="primary" id="close"><mat-icon>close</mat-icon></button>
+    <img src="http://angular-material.fusetheme.com/assets/images/avatars/profile.jpg" alt="http://angular-material.fusetheme.com/assets/images/avatars/profile.jpg">
+
+  </mat-toolbar>      
+
+  <form [formGroup]="newContactForm" mat-dialog-content  (ngSubmit)="onSubmit()">
     
     <p>
       <mat-form-field appearance="outline" [style.width.px]=327>
@@ -98,8 +99,10 @@
   
   
     
-    <p>
-      <button (click)="onSubmit()" [disabled]="!newContactForm.valid" id="add">ADD</button>
-    </p>
     
   </form>
+
+
+  <mat-dialog-actions>
+    <button mat-flat-button  (click)="onSubmit()" [disabled]="!newContactForm.valid">ADD</button>
+  </mat-dialog-actions>
