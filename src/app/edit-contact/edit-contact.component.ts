@@ -15,14 +15,15 @@ export class EditContactComponent implements OnInit {
   
   newContactForm: FormGroup; 
   contact: Contact;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<EditContactComponent>,
     @Inject(MAT_DIALOG_DATA) data) { 
       this.contact = data;
     }
-
+    
+  
   ngOnInit(): void {
     this.newContactForm = this.formBuilder.group({
       id: [this.contact.id],

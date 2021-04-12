@@ -1,12 +1,19 @@
-<mat-toolbar color='primary'>
-    <p>Edit Contact</p>
-    <button mat-dialog-close mat-mini-fab color="primary" id="close"><mat-icon>close</mat-icon></button>
-  </mat-toolbar>
-  
-  <form [formGroup]="newContactForm" (ngSubmit)="onSubmit()">
-    
+<mat-toolbar mat-dialog-title color="primary" [style.width.px]=350 [style.height.px]=150>
+  <mat-toolbar-row class="top-header">
+  <span>Edit Contact</span>
+    <mat-icon mat-dialog-close id="close">close</mat-icon>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="avatar">
+    <img src="{{ contact.picture }}" alt="profile picture" [style.height.px]=96>
+
+  </mat-toolbar-row>
+  </mat-toolbar>      
+
+
+  <form [formGroup]="newContactForm" mat-dialog-content [style.height.px]=280  (ngSubmit)="onSubmit()">
+   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Name *</mat-label>
           <input matInput placeholder="Name *" formControlName="name">
         <mat-icon matSuffix>account_circle</mat-icon>
@@ -14,7 +21,7 @@
     </p>
     
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Lastname</mat-label>
         <input matInput placeholder="Lastname" formControlName="lastname">
         <mat-icon matSuffix>account_circle</mat-icon>
@@ -22,7 +29,7 @@
     </p>
   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Nickname</mat-label>
         <input matInput placeholder="Nickname" formControlName="nickname">
         <mat-icon matSuffix>star</mat-icon>
@@ -30,7 +37,7 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Phone number</mat-label>
         <input matInput placeholder="Placeholder" formControlName="phonenumber">
         <mat-icon matSuffix>phone</mat-icon>
@@ -38,7 +45,7 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Email</mat-label>
         <input matInput placeholder="Placeholder" formControlName="email">
         <mat-icon matSuffix>email</mat-icon>
@@ -47,7 +54,7 @@
     </p>
     
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Company</mat-label>
         <input matInput placeholder="Placeholder" formControlName="company">
         <mat-icon matSuffix>business</mat-icon>
@@ -57,7 +64,7 @@
   
   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Job title</mat-label>
         <input matInput placeholder="Placeholder" formControlName="jobtitle">
         <mat-icon matSuffix>work</mat-icon>
@@ -67,7 +74,7 @@
   
   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Birthday</mat-label>
         <input matInput placeholder="Placeholder"formControlName="birthday">
         <mat-icon matSuffix>calendar_today</mat-icon>
@@ -76,7 +83,7 @@
     </p>
   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Address</mat-label>
         <input matInput placeholder="Placeholder" formControlName="address">
         <mat-icon matSuffix>home</mat-icon>
@@ -86,7 +93,7 @@
   
   
     <p>
-      <mat-form-field appearance="outline" [style.width.px]=327>
+      <mat-form-field appearance="outline" [style.width.px]=350>
         <mat-label>Notes</mat-label>
         <textarea matInput placeholder="Placeholder" formControlName="notes">
         </textarea>
@@ -94,12 +101,14 @@
       </mat-form-field>
     </p>
   
-  
-    
-    <p>
-      <button (click)="onSubmit()" [disabled]="!newContactForm.valid" id="add">SAVE</button>
-    </p>
-    
+     
   </form>
     
   
+
+  <mat-dialog-actions [style.height.px]=50 flex align="end">
+    <button mat-flat-button  (click)="onSubmit()" [disabled]="!newContactForm.valid">SAVE</button>
+  </mat-dialog-actions>
+  
+
+

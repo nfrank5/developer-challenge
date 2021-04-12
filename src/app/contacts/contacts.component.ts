@@ -158,12 +158,14 @@ export class ContactsComponent implements OnInit {
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.height= '500px';
+    //dialogConfig.height= '400px';
+    dialogConfig.maxHeight= '95vh';
     dialogConfig.width= '400px';
     dialogConfig.hasBackdrop = true;
+    //dialogConfig.panelClass = 'app-full-bleed-dialog';
     const dialogRef = this.dialogNewContact.open(NewContactComponent, dialogConfig);
     
-
+    
     dialogRef.afterClosed().subscribe(result => {
       if (result)
       {
@@ -175,7 +177,9 @@ export class ContactsComponent implements OnInit {
 
   editContactDialog(contact:Contact): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.height= '500px';
+    //dialogConfig.height= '500px';
+    //dialogConfig.width= '400px';
+    dialogConfig.maxHeight= '95vh';
     dialogConfig.width= '400px';
     dialogConfig.hasBackdrop = true;
     dialogConfig.data = contact;
