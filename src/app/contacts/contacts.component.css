@@ -9,10 +9,7 @@ table {
     width: 40%;
   }
 
-  .ng-container {
-    display: inline-flex;
-    vertical-align: middle;
-  }
+
 
   img {
     border-radius: 50%;
