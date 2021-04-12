@@ -5,7 +5,7 @@ import { ContactService } from '../contact.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialogConfig} from '@angular/material/dialog';
 import { NewContactComponent } from '../new-contact/new-contact.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditContactComponent } from '../edit-contact/edit-contact.component';
 import { sortBy } from 'sort-by-typescript';
 import {SelectionModel} from '@angular/cdk/collections';
@@ -24,9 +24,8 @@ export class ContactsComponent implements OnInit {
   selectedContact?: Contact;
   newContact?: Contact;
 
-  //panel para borrar
+  //Delete panel
   isOpen = false;
-
 
   constructor(
     private contactService: ContactService, 
@@ -37,10 +36,6 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit() {
     this.getContacts();
-  }
-
-  onSelect(contact: Contact): void {
-    this.selectedContact = contact;
   }
 
   getContacts(): void {
@@ -58,7 +53,6 @@ export class ContactsComponent implements OnInit {
     this.selection.clear()
     this.dataSource.data = this.contacts;
     this.isOpen = false;
-
   }
 
   favorite(contact: Contact):void {
@@ -68,13 +62,12 @@ export class ContactsComponent implements OnInit {
     this.contactService.updateContact(contact).subscribe();
   }
 
+  /*Table attributes and methods*/ 
   displayedColumns: string[] = ['checkbox', 'picture', 'name', 'email', 'phoneNumber', 'favorite', 'delete'];
   dataSource = new MatTableDataSource<Contact>();
   
-  //checkbox
+  /*Checkbox attributes and methods*/
   selection = new SelectionModel<Contact>(true, []); //parametros allowMultiSelect, initialSelection
-
-
   
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -98,6 +91,7 @@ export class ContactsComponent implements OnInit {
     this.selection.clear();
     this.isOpen = false;
   }
+  
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Contact): string {
     if (!row) {
@@ -117,7 +111,6 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-
   hideDeleteBar() {
     this.isOpen = false;
     this.selection.clear();
@@ -130,9 +123,7 @@ export class ContactsComponent implements OnInit {
     }
     this.selection.clear()
     this.isOpen = false;
-
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -155,30 +146,23 @@ export class ContactsComponent implements OnInit {
        });
   }
 
-
-  openDialog() {
+  newContactDialog() {
     const dialogConfig = new MatDialogConfig();
-    //dialogConfig.height= '400px';
     dialogConfig.maxHeight= '95vh';
     dialogConfig.width= '400px';
     dialogConfig.hasBackdrop = true;
-    //dialogConfig.panelClass = 'app-full-bleed-dialog';
     const dialogRef = this.dialogNewContact.open(NewContactComponent, dialogConfig);
     
-    
     dialogRef.afterClosed().subscribe(result => {
-      if (result)
-      {
+      if (result) {
         this.newContact = result
         this.addNewContact(this.newContact);
       }
-      });
+    });
   }
 
   editContactDialog(contact:Contact): void {
     const dialogConfig = new MatDialogConfig();
-    //dialogConfig.height= '500px';
-    //dialogConfig.width= '400px';
     dialogConfig.maxHeight= '95vh';
     dialogConfig.width= '400px';
     dialogConfig.hasBackdrop = true;
@@ -215,5 +199,4 @@ export class ContactsComponent implements OnInit {
       }
     });
   }
-  
 }

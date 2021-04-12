@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Contact } from '../contact';
 
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Inject } from '@angular/core';
 
 
@@ -43,11 +43,9 @@ export class EditContactComponent implements OnInit {
       });
   }
 
-
   onSubmit() {
     this.dialogRef.close(this.newContactForm.value);
   }
-
 
 }
 
